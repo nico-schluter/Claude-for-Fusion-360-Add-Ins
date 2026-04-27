@@ -14,6 +14,13 @@ Creates a new custom feature.
 - **input** (CustomFeatureInput): The CustomFeatureInput object that defines the information needed to create a custom feature.
 - **Returns** (CustomFeature): Returns the newly created CustomFeature.
 
+> **Known issue — `RuntimeError: 3 : make params invalid`:** This error is thrown if the
+> add-in's `.manifest` file does not have an `id` field set. The Fusion documentation
+> states the `id` field is not needed and the default add-in template does not include it,
+> but `CustomFeatures.add()` silently requires it. Add a UUID to the manifest and
+> **restart Fusion** (reload add-in alone is not sufficient). Example:
+> `"id": "8ddf023b-89bd-4313-84ea-1d94c4dba3bd"`
+
 ### [static] classType() -> string
 Static function that all classes support that returns the type of the class as a string. The returned string matches the string returned by the objectType property. For example if you have a reference to an object and you want to check if it's a SketchLine you can use myObject.objectType == fusion.SketchLine.classType().
 - **Returns** (string): Returns a string indicating the type of the object.
